@@ -93,25 +93,25 @@ class Student extends ResourceController
             return $this->respond($response);
     } 
 
-    public function InsertEducationStudent($studentID = null){
-        $model = new StudentModel();
-        $model = new EducationModel();
-        $studentdata = $model->where('id_stu',$studentID)->first();
-        $studentdata =[
-            "id_stu"=> $this->request->getvar('id_stu'),
-            "id_university"=> $this->request->getvar('id_university'),
-            "id_faculty"=> $this->request->getvar('id_faculty'),
-            "id_course"=> $this->request->getvar('id_course'),
-            "id_major"=> $this->request->getvar('id_major'),
-        ];
-        $model->insert($studentdata,);
-        $response=[
-            'satatus'=>201,
-            'error'=>null,
-            'meessage'=>[
-                'success' => 'สมัครสำเร็จ'
-            ]
-        ];
-            return $this->respond($response);
-    } 
+    // public function InsertEducationStudent($studentID = null){
+    //     $model = new StudentModel();
+    //     $model = new EducationModel();
+    //     $studentdata = $model->where('id_stu',$studentID)->first();
+    //     $studentdata =[
+    //         "id_stu"=> $this->request->getvar('id_stu'),
+    //         "id_university"=> $this->request->getvar('id_university'),
+    //         "id_faculty"=> $this->request->getvar('id_faculty'),
+    //         "id_course"=> $this->request->getvar('id_course'),
+    //         "id_major"=> $this->request->getvar('id_major'),
+    //     ];
+    //     $model->insert($studentdata,);
+    //     $response=[
+    //         'satatus'=>201,
+    //         'error'=>null,
+    //         'meessage'=>[
+    //             'success' => 'สมัครสำเร็จ'
+    //         ]
+    //     ];
+    //         return $this->respond($response);
+    // } 
 }
