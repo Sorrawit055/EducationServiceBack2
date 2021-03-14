@@ -30,7 +30,7 @@ class EducationStudent extends ResourceController
         ->select('course.*')
         ->select('group_major.*')
         ->select('edu_stu.*')
-        ->orderBy('edu_stu.id_stu')->first();
+        ->where('edu_stu.id_stu',$educationID)->first();
         return $this->respond($educationdata);
     }
 

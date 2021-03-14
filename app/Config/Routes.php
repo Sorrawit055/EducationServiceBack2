@@ -47,11 +47,21 @@ $routes->put('/EducationStudent/(:num)', 'EducationStudent::updateEducationStude
 
 $routes->post("/Login", "Login::index");
 
+$routes->post("/Title", "Title::getTitle");
+
+$routes->post("/Curriculum", "Curriculum::getCurriculum");
+
+$routes->post("/University", "University::getUniversity");
+$routes->post("/Faculty", "Faculty::getFaculty");
+$routes->post("/Course", "Course::getCourse");
+
+$routes->post("/GroupMajor", "GroupMajor::getGroupMajor");
+
+$routes->post("/EducationData", "EducationData::getAllEducationData");
+$routes->get('/EducationData/(:num)', 'EducationData::getEducationdataid/$1');
 
 
-$routes->get('/products', 'product::create');
-$routes->put('/products/(:num)', 'product::update/$1');
-$routes->delete('/products/(:num)', 'product::deleted/$1');
+
 
 /*
  * --------------------------------------------------------------------
