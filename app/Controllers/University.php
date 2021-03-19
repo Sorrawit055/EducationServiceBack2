@@ -14,7 +14,7 @@ class University extends ResourceController
     public function getUniversity()
     {
         $model = new UniversityModel();
-        $studentdata['university'] = $model->orderBy('id_university')->findAll();
+        $studentdata = $model->orderBy('id_university')->findAll();
         return $this->respond($studentdata);
     }   
 }

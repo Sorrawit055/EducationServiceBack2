@@ -10,16 +10,16 @@ class EducationStudent extends ResourceController
 {
     use ResponseTrait;
 
-    public function getAllEducation()
-    {
-        $model = new EducationModel();
-        $educationdata['education'] = $model->orderBy('id_edu_stu','DESC')->findAll();
-        return $this->respond($educationdata);
-    }
+    // public function getAllEducation()
+    // {
+    //     $model = new EducationModel();
+    //     $educationdata['education'] = $model->orderBy('id_edu_stu','DESC')->findAll();
+    //     return $this->respond($educationdata);
+    // }
 
     public function getEducation($educationID = null){
-        $edumodel = new EducationModel();
-        $educationdata = $edumodel->join('student', 'student.id_stu  = edu_stu.id_stu')
+        $model = new EducationModel();
+        $educationdata = $model->join('student', 'student.id_stu  = edu_stu.id_stu')
         ->join('university', 'university.id_university = edu_stu.id_university')
         ->join('faculty', 'faculty.id_faculty = edu_stu.id_faculty')
         ->join('course', 'course.id_course = edu_stu.id_course')
@@ -34,6 +34,8 @@ class EducationStudent extends ResourceController
         return $this->respond($educationdata);
     }
 
+
+
     public function addEducationStudent(){
         $model = new EducationModel();
         $educationdata =[
@@ -45,6 +47,8 @@ class EducationStudent extends ResourceController
             "id_major"=> $this->request->getvar('id_major'),
 
         ];
+        $checkedustu = $model->where('id_stu',$educationdata['id_stu'])->first();
+        if($checkedustu === null){
         $model->insert($educationdata);
         $response=[
             'satatus'=>201,
@@ -54,7 +58,19 @@ class EducationStudent extends ResourceController
             ]
         ];
             return $this->respond($response);
+    } else{
+        $response=[
+            'satatus'=>400,
+            'error'=>null,
+            'meessage'=>[
+                'success' => 'ข้อมูลมีอยู่เเล้ว'
+            ]
+        ];
+        return $this->respond($response);
+
     } 
+
+}
 
     public function updateEducationStudent($educationID = null)
     {

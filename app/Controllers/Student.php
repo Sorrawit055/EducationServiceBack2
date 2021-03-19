@@ -1,5 +1,5 @@
 <?php 
-
+//https://github.com/Sorrawit055/EducationServiceBack2.git
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;//ทำAPI
 use CodeIgniter\API\ResponseTrait;//จัดเป็น json เอง
@@ -13,12 +13,12 @@ class Student extends ResourceController
 {
     use ResponseTrait;
 
-    public function getAllStudent()
-    {
-        $model = new StudentModel();
-        $studentdata['student'] = $model->orderBy('id_stu','DESC')->findAll();
-        return $this->respond($studentdata);
-    }
+    // public function getAllStudent()
+    // {
+    //     $model = new StudentModel();
+    //     $studentdata['student'] = $model->orderBy('id_stu','DESC')->findAll();
+    //     return $this->respond($studentdata);
+    // }
 
     public function getStudent($studentID = null){
         $stumodel = new StudentModel();
@@ -31,43 +31,46 @@ class Student extends ResourceController
         return $this->respond($studentdata);
     }
 
-    public function addStudent(){
-        $model = new StudentModel();
-        $studentdata =[
-            "id_stu"=> $this->request->getvar('id_stu'),
-            "id_title"=> $this->request->getvar('id_title'),
-            "fname_stu"=> $this->request->getvar('fname_stu'),
-            "lname_stu"=> $this->request->getvar('lname_stu'),
-            "id_curriculum"=> $this->request->getvar('id_curriculum'),
-            "GPA_stu"=> $this->request->getvar('GPA_stu'),
-            "year_class"=> $this->request->getvar('year_class'),
-            "class"=> $this->request->getvar('class'),
-            "year_stu"=> $this->request->getvar('year_stu'),
-            "password_stu"=> $this->request->getvar('password_stu'),
+//     public function addStudent(){
+//         $model = new StudentModel();
+//         $studentdata =[
+//             "id_stu"=> $this->request->getvar('id_stu'),
+//             "id_title"=> $this->request->getvar('id_title'),
+//             "fname_stu"=> $this->request->getvar('fname_stu'),
+//             "lname_stu"=> $this->request->getvar('lname_stu'),
+//             "id_curriculum"=> $this->request->getvar('id_curriculum'),
+//             "GPA_stu"=> $this->request->getvar('GPA_stu'),
+//             "year_class"=> $this->request->getvar('year_class'),
+//             "class"=> $this->request->getvar('class'),
+//             "year_stu"=> $this->request->getvar('year_stu'),
+//             "password_stu"=> $this->request->getvar('password_stu'),
 
-        ];
-        $check = $model->where('id_stu',$studentdata['id_stu'])->first();
+//         ];
+//         $check = $model->where('id_stu',$studentdata['id_stu'])->first();
 
-        if($check === null){
-        $model->insert($studentdata);
-        $response=[
-            'satatus'=>201,
-            'error'=>null,
-            'meessage'=>[
-                'success' => 'สมัครสำเร็จ'
-            ]
-        ];
-        return $this->respond($response);
-    }else{
-        $response=[
-            'satatus'=>400,
-            'error'=>null,
-            'meessage'=>[
-                'success' => 'ข้อมูลมีอยู่เเล้ว'
-            ]
-        ];
-    } 
-}
+//         if($check === null){
+//         $model->insert($studentdata);
+//         $response=[
+//             'satatus'=>201,
+//             'error'=>null,
+//             'meessage'=>[
+//                 'success' => 'สมัครสำเร็จ'
+//             ]
+//         ];
+//         return $this->respond($response);
+//     }else{
+//         $response=[
+//             'satatus'=>400,
+//             'error'=>null,
+//             'meessage'=>[
+//                 'success' => 'ข้อมูลมีอยู่เเล้ว'
+//             ]
+//         ];
+//         return $this->respond($response);
+
+//     } 
+
+// }
     public function updateProfileStudent($studentID = null)
     {
         $model = new StudentModel();
@@ -82,6 +85,7 @@ class Student extends ResourceController
             "year_stu"=> $this->request->getvar('year_stu'),
             "password_stu"=> $this->request->getvar('password_stu'),
         ];
+
         $model->update($studentID, $studentdata);
         $response=[
             'satatus'=>201,

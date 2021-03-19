@@ -46,20 +46,20 @@ $routes->put('/EducationStudent/(:num)', 'EducationStudent::updateEducationStude
 
 
 $routes->post("/Login", "Login::index");
+$routes->get("/Title", "Title::getTitle");
 
-$routes->post("/Title", "Title::getTitle");
+$routes->get("/Curriculum", "Curriculum::getCurriculum");
 
-$routes->post("/Curriculum", "Curriculum::getCurriculum");
+$routes->get("/University", "University::getUniversity");
+$routes->get("/Faculty", "Faculty::getFaculty");
+$routes->get("/Course", "Course::getCourse");
 
-$routes->post("/University", "University::getUniversity");
-$routes->post("/Faculty", "Faculty::getFaculty");
-$routes->post("/Course", "Course::getCourse");
+$routes->get("/GroupMajor", "GroupMajor::getGroupMajor");
 
-$routes->post("/GroupMajor", "GroupMajor::getGroupMajor");
-
-$routes->post("/EducationData", "EducationData::getAllEducationData");
+$routes->get("/EducationData", "EducationData::getAllEducationData");
 $routes->get('/EducationData/(:num)', 'EducationData::getEducationdataid/$1');
 
+$routes->get('/EducationData', 'EducationData::SearchEducation');
 
 
 
